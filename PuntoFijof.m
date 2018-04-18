@@ -1,6 +1,3 @@
-aux=0;
-vecX = [];
-vecError = [];
 %Metodo Punto fijo
 g= @(x) (6-x)/3;
 x0= 1;
