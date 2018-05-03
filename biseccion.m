@@ -1,3 +1,5 @@
+%LISTO
+
 func = @(x) x.^3 - 4*sin(x) + 1;
 a = 1;
 b = 2;
