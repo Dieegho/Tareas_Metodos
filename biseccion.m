@@ -1,7 +1,22 @@
-function raiz = biseccion(f, a, b, e)
-    t = tic;
+func = @(x) x.^3 - 4*sin(x) + 1;
+a = 1;
+b = 2;
+e = 1e-5;
+
+[raiz, vecRaiz, vecError, it, a_or, b_or] = biseccionn(func, a, b, e)
+
+varNames = {'Iteraciones', 'Raiz', 'Error'};
+[Table, latexT] = tableGenerator(it, [vecRaiz; vecError], varNames);
+disp(Table)
+disp(char(latexT))
+
+function [raiz, vecRaiz, vecError, it, a_or, b_or] = biseccionn(f, a, b, e)
+    a_or = a;
+    b_or = b;
     raiz = [;;];
     i = -1;
+    
+    tic;
     if eval(subs(f,a))*eval(subs(f,b)) > 0
         raiz = 'error'
     else
@@ -19,5 +34,11 @@ function raiz = biseccion(f, a, b, e)
         raiz(2, i+1) = (a+b)/2;
         end
     end
-    toc(t)
+    tiempo_cpu = toc
+    it = size(raiz(1,:));
+    
+    it = it(2);
+    vecRaiz = raiz(2,:);
+    vecError = raiz(3,:);
+    raiz = vecRaiz(it);
 end
