@@ -13,11 +13,13 @@ varNames = {'Iteraciones', 'Raiz', 'Error'};
 disp(Table)
 disp(char(latexT))
 
-function [raiz, vecRaiz, vecError,  vecA, vecB, it, a_or, b_or] = false_position(f, a, b, e) 
+function [raiz, vecRaiz, vecError,  vecA, vecB, it, a_or, b_or] = false_position(f, a, b, e)
 error = 1;
 k = 1;
 a_or = a;
 b_or = b;
+
+tic;
 
 if f(a)*f(b) < 0    
     while e < error
@@ -47,6 +49,7 @@ if f(a)*f(b) < 0
     end %end while
 end %end if
 
+tiempo_cpu = toc;
 it = k - 1;
 vecRaiz = vecRaiz(2:end);
 vecError = vecError(2:end);
