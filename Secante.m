@@ -18,6 +18,8 @@ k = 1;
 a_or = a;
 b_or = b;
 
+tic; 
+
 if f(a)*f(b) < 0
     while e < error
         f_a = f(a);
@@ -41,6 +43,7 @@ if f(a)*f(b) < 0
     end
 end
 
+tiempo_cpu = toc
 it = k - 1;
 vecRaiz = vecRaiz(2:end);
 vecError = vecError(2:end);
