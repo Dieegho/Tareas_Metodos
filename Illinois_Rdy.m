@@ -15,6 +15,7 @@ a_or = a;
 b_or = b;
 i = 1;
 
+tic;
 f_a = f(a);
 f_b = f(b);
 
@@ -50,6 +51,8 @@ while (abs(f_c) > tol) && (i <= Nmax)
     vecError(i+1) = abs(f_c);
     i = i + 1;
 end
+
+tiempo_cpu = toc
 it = i - 1;
 vecRaiz = vecRaiz(2:end);
 vecError = vecError(2:end);
