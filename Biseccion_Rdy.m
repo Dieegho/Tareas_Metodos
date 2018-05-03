@@ -43,4 +43,12 @@ function [raiz, vecRaiz, vecError, it, a_or, b_or] = biseccionn(f, a, b, e)
     vecRaiz = raiz(2,:);
     vecError = raiz(3,:);
     raiz = vecRaiz(it);
+    
+    
+    fplot(f, [a_or b_or]), grid on
+    xlabel('x')
+    ylabel('y')
+
+    title = strcat('Biseccion[', num2str(a_or), ', ', num2str(b_or), ']');
+    print(title, '-deps')
 end
