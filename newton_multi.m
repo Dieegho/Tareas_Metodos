@@ -1,4 +1,4 @@
-%% Prueba de Métodos
+%% Prueba de MÃ©todos
 format long;
 syms x y;
 funcion = [x^3-3*x*y^2-1/2; 3*x^2*y-y^3-(3^(1/2))/2];
@@ -8,7 +8,7 @@ b = 1;
 e = 1e-6;
 
 
-% Método de Newton
+% MÃ©todo de Newton
 newton_multiple(func, a, b, e)
 %newton_opti(funcion, a, b, e)
 
@@ -17,7 +17,7 @@ function newton_multiple(funcion, x0, y0, e)
     
     syms x y;
     i = 0;
-    fprima = inv(jacobian(funcion))
+    fprima = inv(jacobian(funcion));
     
     x_inicial = [x0; y0];
     x_final = x_inicial - eval(subs(fprima, [x, y], [x_inicial(1), x_inicial(2)]))*eval(subs(funcion, [x, y], [x_inicial(1), x_inicial(2)]));
