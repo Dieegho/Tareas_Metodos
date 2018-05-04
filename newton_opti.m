@@ -1,16 +1,20 @@
-%% Prueba de Métodos
+%% Prueba de MÃ©todos
 format long;
 syms x y;
-funcion = (1-x)^2+100*(y-x^2)^2;
-a = -3;
-b = -4;
+% Rosenbrock
+Rosenbrock = (1-x)^2+100*(y-x^2)^2;
+% Freudenstein and Roth
+Freu_and_Roth = (-13+x+((5-y)*y-2)*y)^2+(-29+x+((y+1)*y-14)*y)^2
 e = 1e-6;
 
 
-% Método de Newton
-rosenbrock_funcion(funcion, a, b, e)
+% MÃ©todo de Newton
+fprintf('Rosenbrock');
+opti(Rosenbrock, -3, -4, e)
+fprintf('Freudenstein and Roth');
+opti(Freu_and_Roth, -50, 7, e)
 
-function rosenbrock_funcion(funcion, x0, y0, e)
+function opti(funcion, x0, y0, e)
     t = tic;
     
     syms x y;
