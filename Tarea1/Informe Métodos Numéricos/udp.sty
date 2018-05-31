@@ -1,0 +1,67 @@
+% udp.sty
+% Package for several UDP utilities
+% Adin Ramirez adin.ramirez (at) mail.udp.cl
+
+% hack for logos to be loaded from .sty and .cls as well as normal .tex files
+% so we need to dynamically set @ as letter or normal font depending on the previous state
+% if it was letter (catcode 11) leave it like that, else change it to letter and back with unset
+\newif\ifatwasother
+\newcommand{\@setat}{%
+  \def\x{\the\catcode`@}
+  \ifnum\x=12 %special @, then make it normal
+    \atwasothertrue
+    \makeatletter
+  \else
+    \atwasotherfalse
+  \fi
+}
+\newcommand{\@unsetat}{%
+  \ifatwasother
+    \makeatother
+  \fi
+}
+
+% Definition of the logos of the EIT UDP in TikZ format
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+\definecolor{grayudp}{RGB}{57,56,60}%gray
+\definecolor{redudp}{RGB}{219,60,65}%red ing
+%\definecolor{redudp}{RGB}{222,31,53}%red udp
+
+% Set logo for first page
+\def\@logotext
+\def\@logo{}
+\newcommand{\@setlogo}{\def\@logo{%
+\begin{minipage}{\@logosz}%
+\resizebox{\@logosz}{!}{\@logoholder}\\%
+\tiny \textbf{\@logotext}%
+\end{minipage}%
+}}
+\newcommand{\getlogo}{\@logo}% return the logo
+
+% Set logo size
+\def\@logosz{4.5cm}
+\newcommand{\setlogosz}[1]{\def\@logosz{#1}}
+\let\logosz\setlogosz
+
+% Setters for the logos
+\def\@logoholder{}
+
+% We need to create the logos like \setlogo{EIT}, \setlogo{EITFI}
+% We can also pass the header below the logo if needed
+\RequirePackage{etoolbox}
+\newcommand\setlogo[2][]{%
+  % we load the logo from their respective file 
+  % this factorization allows to add new logos without changing this code
+  \@setat% changes @ dynamically
+  \ifcsdef{@logo#2}{}%
+  {\input{logos/#2.logo}}% if not defined, load it
+  \@unsetat% reverts @
+  % sets the logholder for extra use
+  \expandafter\let\expandafter\@logoholder\csname @logo#2\endcsname%
+  % sets the logo
+  \@setlogo%
+  \def\@logotext{#1}}
+
+% default logo
+\setlogo{UDP}
