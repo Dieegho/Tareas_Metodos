@@ -15,13 +15,13 @@ while norma > e
     iterador = iterador + 1;
     fprintf ('%d  ', iterador);
     for i = 1:n
-        suma = 0;
+        sumatoria = 0;
         for j = 1:n
             if i ~= j
-                suma = suma + A(i,j)*X(j);
+                sumatoria = sumatoria + A(i,j)*X(j);
             end
         end
-        X(i)=(B(i)-suma)/A(i,i);
+        X(i)=(B(i)-sumatoria)/A(i,i);
         fprintf('%10.7f  ',X(i));
     end
     norma = abs(norm(X0-X)/norm(X0));
