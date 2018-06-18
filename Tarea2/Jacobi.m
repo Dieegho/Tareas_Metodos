@@ -24,7 +24,7 @@ while norma > e
         X(i)=(B(i)-suma)/A(i,i);
         fprintf('%10.7f  ',X(i));
     end
-    norma = norm(X0-X)/norm(X0);
+    norma = abs(norm(X0-X)/norm(X0));
     fprintf('%10.7f\n', norma);
     X0 = X;
     if iterador >= max
