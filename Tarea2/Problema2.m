@@ -1,5 +1,7 @@
-[A,b]=matriz(10);
-Eliminacion_gaussiana(A,b);
+%[A,b]=matriz(10);
+%[A,b]=matriz(20);
+%[A,b]=matriz(30);
+%Eliminacion_gaussiana(A,b);
 
 function [A,b] = matriz(n)
 A=zeros(n)
