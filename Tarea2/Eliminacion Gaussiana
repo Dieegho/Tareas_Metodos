@@ -1,0 +1,23 @@
+function [ x ] = EliGaussiana( A, b )
+[n, c]=size(A);
+
+for i=1:n-1;
+    for f=i+1:n ;
+        m=A(f,i)/A(i,i);
+        for j= i+1:n;
+            A(f,j)= A(f,j)-m*A(i,j);
+        end
+        A(f,i)=0;
+        b(f)=b(f)-m*b(i);
+    end
+end
+x=zeros(n,1);
+for i=n:-1:1;
+    var=0;
+    for j=i+1:n
+        var=var+A(i,j)*x(j);
+    end
+    x(i)=(b(i)-var)/A(i,i);
+end
+return
+end
