@@ -16,7 +16,7 @@ function f = lagrange(X,Y,XX)
     N = length(X);
     pvals = zeros(N,N);
     for i = 1:N
-      pp = poly(X( (1:N) ~= i));
+      pp = poly(X((1:N) ~= i));
       pvals(i,:) = pp ./ polyval(pp, X(i));
     end
     f = Y*pvals;
@@ -27,7 +27,7 @@ function f = lagrange(X,Y,XX)
     end
 
     if nargout > 1
-      R = roots( ((N-1):-1:1) .* f(1:(N-1)) );
+      R = roots(((N-1):-1:1) .* f(1:(N-1)));
       if nargout > 2
         S = polyval(f,R);
       end
